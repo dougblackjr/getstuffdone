@@ -1,0 +1,12 @@
+%h1 Current Locations
+
+.wrapper_with_padding
+  %a{ href: (url_for new_location_path)}
+    %p.button New Location
+  #notes.clearfix
+    - @locations.each do |location|
+      %a{ href: (url_for [location])}
+        #gerbil
+          %p.title #{location.name}
+          %p.date #{location.description}
+          %p.smalllink #{link_to 'Edit', edit_location_path(location)}&nbsp;&nbsp;&nbsp;#{link_to 'Delete', location, method: :delete, data: { confirm: 'Are you sure?' }}

@@ -1,0 +1,12 @@
+= simple_form_for(@todo) do |f|
+  = f.error_notification
+
+  .form-inputs
+    %p Title: #{f.input :title, label: false}
+    %p Description of Problem: #{f.input :description, label: false}
+    %p Location: #{f.collection_select :location_id, Location.all, :id, :name, prompt: true}
+    %p Priority: #{f.select(:priority, options_for_select([['1 - Immediate'], ['2 - Non-immediate']]))}
+    %p Picture: #{f.file_field :picture}
+
+  .form-actions
+    = f.button :submit

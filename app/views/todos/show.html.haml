@@ -1,0 +1,19 @@
+.wrapper_with_padding
+	%h1= @todo.title
+	%p <B>Description:</B> #{@todo.description}
+	%p <B>Location:</B> #{Location.find_by_id(@todo.location_id).name} /// <B>Priority:</B> #{@todo.priority}
+	= image_tag(@todo.picture_url, :width => 400) if @todo.picture.present?
+
+	%br
+	%button= link_to 'Complete!', complete_todo_path(@todo.id), method: :patch
+	%button= link_to 'Edit', edit_todo_path(@todo)
+	%button= link_to 'Back', todos_path
+
+	%h3 Updates on Task
+	- @comments.each do |comment|
+		.comment-body
+			%p <B>#{comment.body}</B>
+			%p by #{comment.user_name}
+
+	%h3 Add Update
+	= render 'comments/form'

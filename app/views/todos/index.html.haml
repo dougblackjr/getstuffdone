@@ -1,0 +1,22 @@
+.wrapper_with_padding
+  #active
+    %a{ href: (url_for new_todo_path)}
+      %p.button New Task
+    #notes.clearfix
+      - @todos.reject(&:completed).sort_by(&:created_at).each do |todo|
+        %a{ href: (url_for [todo])}
+          #gerbil
+            %p.title= todo.title
+            %p.date= Location.find_by_id(todo.location_id).name if todo.location_id.present?
+            %p.date #{time_ago_in_words(todo.created_at)} old
+            %p.smalllink #{link_to 'Complete!', complete_todo_path(todo.id), method: :patch}&nbsp;&nbsp;&nbsp;#{link_to 'Show Details', todo}
+  #completed
+    %h1 <BR>Completed tasks
+    #notes.clearfix
+      - @todos.where(:completed => true).sort_by(&:created_at).each do |todo|
+        %a{ href: (url_for [todo])}
+          #completedtasks
+            %p.title= todo.title
+            %p.date= Location.find_by_id(todo.location_id).name if todo.location_id.present?
+            %p.date #{time_ago_in_words(todo.created_at)} old
+            %p.smalllink #{link_to 'Show Details', todo}, #{link_to 'Destroy', todo, method: :delete, data: { confirm: 'Are you sure?' }}

@@ -1,5 +1,5 @@
 = simple_form_for(@comment) do |f|
 	= f.hidden_field :todo_id
 	= f.hidden_field :user_name, :value => current_user.email
-	= f.input :body
+	= f.input :body, label: false
 	= f.button :submit

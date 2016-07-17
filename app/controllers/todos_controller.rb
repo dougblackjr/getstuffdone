@@ -45,6 +45,7 @@ class TodosController < ApplicationController
     @todo = Todo.find(params[:id])
     @todo.update_attribute(:completed, true)
     @todo.update_attribute(:completedat, Time.now)
+    @todo.update_attribute(:completedby, current_user.id)
     redirect_to todo_path, notice: "Task completed! Woo!"
   end
 

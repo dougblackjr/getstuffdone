@@ -11,10 +11,13 @@
 		%button= link_to 'Back', todos_path
 
 		%h3 Updates on Task
-		- @comments.each do |comment|
-			.comment-body
-				%p <B>#{comment.body}</B>
-				%p by #{comment.user_name}
+		- unless @comments.blank?
+			- @comments.each do |comment|
+				.comment-body
+					%p <B>#{comment.body}</B>
+					%p by #{comment.user_name}
+		- else
+			%p There are no comments on this task just yet.
 
 		%h3 Add Update
 		= render 'comments/form'
@@ -27,10 +30,13 @@
 		= image_tag(@todo.picture_url, :width => 400) if @todo.picture.present?
 
 		%h3 Updates on Task
-		- @comments.each do |comment|
-			.comment-body
-				%p <B>#{comment.body}</B>
-				%p by #{comment.user_name}
+		- unless @comments.blank?
+			- @comments.each do |comment|
+				.comment-body
+					%p <B>#{comment.body}</B>
+					%p by #{comment.user_name}
+		- else
+			%p There are no comments on this task just yet.
 
 		%h3 Add Update
 		= render 'comments/form'

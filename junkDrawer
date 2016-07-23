@@ -1,1 +1,7 @@
-%p <B>Finished by: #{@User.find(@todo.completedby).email}
+gem 'haml'
+gem 'better_errors'
+gem 'devise'
+gem 'paperclip'
+gem 'simple_form'
+gem 'carrierwave'
+gem 'bootstrap-sass'
